@@ -51,13 +51,14 @@ class Board:
     def draw(self, scr):
         if self.over:
             text = 'win' if self.win else 'lose'
-            scr.addstr(self.offset_y - 2, self.offset_x, f'You {text}! Press q to exit.')
+            scr.addstr(self.offset_y - 2, self.offset_x, f'You {text}!')
         else:
             scr.addstr(self.offset_y - 2, self.offset_x, f'Mines: {self.mines - self.minesmarked}')
         for y in range(0, self.n):
             for x in range(0, self.n):
                 ch = self.get_shown_ch(y, x)
                 scr.addstr(self.offset_y + y, self.offset_x + x, ch)
+        scr.addstr(self.offset_y + self.n + 1, self.offset_x, 'q: Exit | x: Sweep | a: Mark')
         scr.move(self.offset_y + self.y, self.offset_x + self.x)
 
     def move(self, dy, dx):
